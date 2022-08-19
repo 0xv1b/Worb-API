@@ -9,7 +9,9 @@ class Word(BaseModel):
     frequency: Optional[int] = 0
 
 app = FastAPI()
-r = redis.Redis()
+r = redis.Redis(host='redis', port=6379)
+
+r.set("lol", 42)
 
 @app.get("/word/{word}")
 def get_word(word: str):
